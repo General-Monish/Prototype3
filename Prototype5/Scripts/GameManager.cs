@@ -22,15 +22,17 @@ public class GameManager : MonoBehaviour
     Button button;
     [SerializeField]
     GameObject titleScreen;
+    SoundsManager soundsManager;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+       soundsManager=GameObject.Find("AudioManager").GetComponent<SoundsManager>();
     }
 
     public void StartGame(int diificulty)
     {
+        soundsManager.PlayMusic();
         spawnRate /= diificulty;
         titleScreen.SetActive(false);
         isGameActive = true;
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        soundsManager.StopMusic();
         gameOverText.gameObject.SetActive(true);
         isGameActive=false;
         button.gameObject.SetActive(true);

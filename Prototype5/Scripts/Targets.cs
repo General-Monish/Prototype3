@@ -15,6 +15,7 @@ public class Targets : MonoBehaviour
     float ySpawnPos = 2;
    [SerializeField] int pointValue;
    [SerializeField] ParticleSystem explosion;
+    SoundsManager soundsManager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Targets : MonoBehaviour
         RandomTorque();
         RandomSpawnPos();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        soundsManager = GameObject.Find("AudioManager").GetComponent<SoundsManager>();
     }
 
     private void RandomSpawnPos()
@@ -44,6 +46,7 @@ public class Targets : MonoBehaviour
     {
         if (gameManager.isGameActive)
         {
+            soundsManager.PlaySounds();
             Destroy(gameObject);
             Instantiate(explosion, transform.position, explosion.transform.rotation);
             gameManager.UpdateScore(pointValue);
