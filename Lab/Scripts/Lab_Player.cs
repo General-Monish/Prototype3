@@ -61,6 +61,7 @@ public class Lab_Player : MonoBehaviour
         if (other.gameObject.CompareTag("Powerup"))
         {
             Debug.Log("PowerUp Hitted");
+            Destroy(other.gameObject);
         }
     }
 }
